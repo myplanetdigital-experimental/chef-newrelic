@@ -1,0 +1,42 @@
+{
+    "providing": {
+    },
+    "attributes": {
+    },
+    "maintainer": "Skystack Limited.",
+    "replacing": {
+    },
+    "dependencies": {
+    },
+    "recipes": {
+      "iptables": "Installs a New Relic Agent"
+    },
+    "maintainer_email": "support@skystack.com",
+    "groupings": {
+    },
+    "recommendations": {
+    },
+    "platforms": {
+      "debian": [
+
+      ],
+      "centos": [
+
+      ],
+      "ubuntu": [
+
+      ],
+      "redhat": [
+
+      ]
+    },
+    "license": "Apache 2.0",
+    "version": "0.0.1",
+    "suggestions": {
+    },
+    "name": "newrelic",
+    "conflicting": {
+    },
+    "long_description": "",
+    "description": "Sets up New Relic agent on a server"
+  }
