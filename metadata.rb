@@ -1,5 +1,5 @@
 maintainer        "Skystack, Limited."
-maintainer_email  "cookbooks@skystack.com"
+maintainer_email  "support@skystack.com"
 license           "Apache 2.0"
 description       "Installs and configures New Relic agent"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))

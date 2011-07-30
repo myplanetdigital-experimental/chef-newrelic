@@ -2,7 +2,7 @@
 # Cookbook Name:: newrelic
 # Attributes:: default
 #
-# Copyright 2011, Myplanet Digital
+# Copyright 2010, Skystack, Limited
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,8 +40,7 @@ default[:newrelic][:php]['newrelic.timeout']                                  = 
 default[:newrelic][:php]['newrelic.nonblocking']                              = 1
 default[:newrelic][:php]['newrelic.daemon']                                   = '/tmp/.newrelic.sock'
 
-# NEWRELIC.CFG SETTINGS
-# http://support.newrelic.com/kb/php/proxy-daemon-newreliccfg-settings
+
 default[:newrelic][:license_key]             = 'ENTER_YOUR_LICENSE_KEY'
 default[:newrelic][:pidfile]                 = '/var/run/newrelic-daemon.pid'
 default[:newrelic][:logfile]                 = '/var/log/newrelic/newrelic-daemon.log'
