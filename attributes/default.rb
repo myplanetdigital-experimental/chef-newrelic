@@ -41,6 +41,7 @@ default[:newrelic][:php]['newrelic.nonblocking']                              = 
 default[:newrelic][:php]['newrelic.daemon']                                   = '/tmp/.newrelic.sock'
 
 
+default[:newrelic][:appname]                 = 'Skystack Application'
 default[:newrelic][:license_key]             = 'ENTER_YOUR_LICENSE_KEY'
 default[:newrelic][:pidfile]                 = '/var/run/newrelic-daemon.pid'
 default[:newrelic][:logfile]                 = '/var/log/newrelic/newrelic-daemon.log'
