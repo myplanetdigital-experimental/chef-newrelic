@@ -22,7 +22,7 @@ require_recipe "apt"
 
 apt_repository "newrelic" do
   uri "http://apt.newrelic.com/debian"
-  components ["newrelic", "non free"]
+  components ["newrelic", "non-free"]
   action :add
 end
 
