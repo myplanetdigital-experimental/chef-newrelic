@@ -24,11 +24,6 @@ package "newrelic-php5" do
   options "--force-yes"
 end
 
-service "newrelic-daemon" do
-  supports :start=>true, :stop=>true, :restart => true
-  action [ :enable, :start ]
-end
-
 directory '/etc/newrelic' do
   owner "root"
   group "root"
@@ -47,5 +42,10 @@ template "/etc/newrelic/newrelic.cfg" do
     :collector => node[:newrelic][:daemon][:collector_host]
   )
   notifies :restart, resources(:service => "newrelic-daemon"), :delayed
+end
+
+service "newrelic-daemon" do
+  supports :start=>true, :stop=>true, :restart => true
+  action [ :enable, :start ]
 end
 
