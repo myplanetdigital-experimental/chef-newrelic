@@ -31,6 +31,14 @@ apt_repository "newrelic" do
   action :add
 end
 
+directory '/etc/newrelic' do
+  owner "www-data"
+  group "www-data"
+  mode "0755"
+  action :create
+  recursive true
+end
+
 template "/etc/newrelic/newrelic.cfg" do
   source "newrelic.cfg.erb"
   variables(
