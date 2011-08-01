@@ -41,6 +41,6 @@ template "/etc/newrelic/newrelic.cfg" do
     :pidfile => node[:newrelic][:pidfile],
     :collector => node[:newrelic][:daemon][:collector_host]
   )
-  notifies :restart, resources(:service => "newrelic-daemon")
+  notifies :restart, resources(:service => "newrelic-daemon"), :delayed
 end
 
