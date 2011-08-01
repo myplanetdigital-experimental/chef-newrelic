@@ -21,11 +21,15 @@ require_recipe "newrelic::default"
 
 package "newrelic-php5" do
   action :install
-  options "--force-yes"
+  options "--force-yes --no"
 end
 
-#add a newrelic.ini to php ini folder
-
-# template "/etc/php/newrelic.cfg" do
-#  source "newrelic.cfg.erb"
-# end
+template "/etc/newrelic/newrelic.cfg" do
+  source "newrelic.cfg.erb"
+  variables(
+    :license_key => node[:newrelic][:license_key],
+    :loglevel => node[:newrelic][:loglevel],
+    :logfile => node[:newrelic][:logfile],
+    :pifdile => node[:newrelic][:pidfile]  
+  )
+end
