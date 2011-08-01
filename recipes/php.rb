@@ -44,8 +44,6 @@ template "/etc/newrelic/newrelic.cfg" do
   notifies :restart, resources(:service => "newrelic-daemon"), :delayed
 end
 
-service "newrelic-daemon" do
-  supports :start=>true, :stop=>true, :restart => true
-  action [ :enable, :start ]
-end
+
+
 

@@ -31,6 +31,11 @@ apt_repository "newrelic" do
   action :add
 end
 
+service "newrelic-daemon" do
+  supports :start=>true, :stop=>true, :restart => true
+  action :none
+end
+
 #service "newrelic-daemon" do
 #  case node[:platform]
 #  when "CentOS","RedHat","Fedora"
