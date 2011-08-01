@@ -32,7 +32,7 @@ apt_repository "newrelic" do
 end
 
 service "newrelic-daemon" do
-  supports :start=>true, :stop=>true, :restart=>true, :reload=>true, :status=>true
+  supports :start=>true, :stop=>true, :restart=>true, :reload=>true
   action :nothing
 end
 
