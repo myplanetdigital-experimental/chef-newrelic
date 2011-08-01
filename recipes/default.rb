@@ -32,8 +32,8 @@ apt_repository "newrelic" do
 end
 
 directory '/etc/newrelic' do
-  owner "www-data"
-  group "www-data"
+  owner "root"
+  group "root"
   mode "0755"
   action :create
   recursive true
