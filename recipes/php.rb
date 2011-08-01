@@ -21,7 +21,7 @@ require_recipe "newrelic::default"
 
 package "newrelic-php5" do
   action :install
-  options "--force-yes --no"
+  options "--force-yes"
 end
 
 template "/etc/newrelic/newrelic.cfg" do
