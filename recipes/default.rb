@@ -41,8 +41,3 @@ end
 #  supports :status => true, :restart => true, :reload => true
 #  action [ :enable, :start ]
 #end
-
-service "newrelic-daemon" do
-  supports :start=>true, :stop=>true, :restart => true
-  action [ :enable, :start ]
-end

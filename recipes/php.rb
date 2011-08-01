@@ -24,6 +24,11 @@ package "newrelic-php5" do
   options "--force-yes"
 end
 
+service "newrelic-daemon" do
+  supports :start=>true, :stop=>true, :restart => true
+  action [ :enable, :start ]
+end
+
 directory '/etc/newrelic' do
   owner "root"
   group "root"
