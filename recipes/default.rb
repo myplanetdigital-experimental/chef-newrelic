@@ -30,9 +30,9 @@ apt_repository "newrelic" do
   components ["newrelic", "non-free"]
   action :add
 end
-
+start|stop|restart|force-reload|status|force-stop
 service "newrelic-daemon" do
-  supports :start=>true, :stop=>true, :restart=>true
+  supports :start=>true, :stop=>true, :restart=>true, :reload=>true, :status=>true
   action :nothing
 end
 
