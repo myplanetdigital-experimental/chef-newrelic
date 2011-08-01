@@ -1,20 +1,6 @@
 # WARNING: This file is managed via Opscode Chef. Any manual changes will be overridden on chef run.
 
-license_key=<%= @params[:newrelic][:license_key] %>
-appname=<%= @params[:newrelic][:appname] %>
-pidfile=<%= @params[:newrelic][:pidfile] %>
-logfile=<%= @params[:newrelic][:logfile] %>
-loglevel=<%= @params[:newrelic][:loglevel] %>
-
-# The rest of the daemon options are shown with their default values.
-# Uncomment and edit to change a setting from its default value.
-
-#collector_host=<%= @params[:newrelic][:daemon][:collector_host] %>
-#ssl=<%= @params[:newrelic][:daemon][:ssl] %>
-#timeout=<%= @params[:newrelic][:daemon][:timeout] %>
-#socket=<%= @params[:newrelic][:daemon][:socket] %>
-#max_threads=<%= @params[:newrelic][:daemon][:max_threads] %>
-#metric_limit=<%= @params[:newrelic][:daemon][:metric_limit] %>
-#special=<%= @params[:newrelic][:daemon][:special] %>
-#proxy=<%= @params[:newrelic][:daemon][:proxy] %>
-
+license_key=<%= license_key %>
+pidfile=<%= pidfile %>
+logfile=<%= logfile %>
+loglevel=<%= loglevel %>

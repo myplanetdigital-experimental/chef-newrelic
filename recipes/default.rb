@@ -20,6 +20,11 @@
 
 require_recipe "apt"
 
+node[":newrelic"].each do |nr|
+  #node[:newrelic][:license_key]
+  node[:newrelic][:license_key] = nr["license_key"]
+end
+
 apt_repository "newrelic" do
   uri "http://apt.newrelic.com/debian"
   components ["newrelic", "non-free"]
@@ -28,4 +33,10 @@ end
 
 template "/etc/newrelic/newrelic.cfg" do
   source "newrelic.cfg.erb"
+  variables({
+    license_key = node[:newrelic][:license_key]
+    loglevel = node[:newrelic][:loglevel]
+    logfile = node[:newrelic][:logfile]
+    pifdile = node[:newrelic][:pidfile]  
+  })
 end

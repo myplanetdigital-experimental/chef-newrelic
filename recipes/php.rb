@@ -22,3 +22,9 @@ require_recipe "newrelic::default"
 package "newrelic-php5" do
   action :install
 end
+
+#add a newrelic.ini to php ini folder
+
+# template "/etc/php/newrelic.cfg" do
+#  source "newrelic.cfg.erb"
+# end
