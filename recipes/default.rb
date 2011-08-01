@@ -32,8 +32,8 @@ apt_repository "newrelic" do
 end
 
 service "newrelic-daemon" do
-  supports :start=>true, :stop=>true, :restart => true
-  action :none
+  supports :start=>true, :stop=>true, :restart=>true
+  action :nothing
 end
 
 #service "newrelic-daemon" do
