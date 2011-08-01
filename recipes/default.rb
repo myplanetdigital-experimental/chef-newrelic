@@ -31,20 +31,20 @@ apt_repository "newrelic" do
   action :add
 end
 
-directory '/etc/newrelic' do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
-  recursive true
-end
+#directory '/etc/newrelic' do
+#  owner "root"
+#  group "root"
+#  mode "0755"
+#  action :create
+#  recursive true
+#end
 
-template "/etc/newrelic/newrelic.cfg" do
-  source "newrelic.cfg.erb"
-  variables(
-    :license_key => node[:newrelic][:license_key],
-    :loglevel => node[:newrelic][:loglevel],
-    :logfile => node[:newrelic][:logfile],
-    :pifdile => node[:newrelic][:pidfile]  
-  )
-end
+#template "/etc/newrelic/newrelic.cfg" do
+#  source "newrelic.cfg.erb"
+#  variables(
+#    :license_key => node[:newrelic][:license_key],
+#    :loglevel => node[:newrelic][:loglevel],
+#    :logfile => node[:newrelic][:logfile],
+#    :pifdile => node[:newrelic][:pidfile]  
+#  )
+#end
