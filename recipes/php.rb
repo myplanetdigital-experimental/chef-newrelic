@@ -21,6 +21,7 @@ require_recipe "newrelic::default"
 
 package "newrelic-php5" do
   action :install
+  options "--force-yes"
 end
 
 #add a newrelic.ini to php ini folder
