@@ -31,3 +31,7 @@ apt_repository "newrelic" do
   action :add
 end
 
+service "newrelic-daemon" do
+  supports :status => true, :restart => true, :reload => true
+  action [ :enable, :start ]
+end
