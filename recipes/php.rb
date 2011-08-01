@@ -24,6 +24,14 @@ package "newrelic-php5" do
   options "--force-yes"
 end
 
+directory '/etc/newrelic' do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+  recursive true
+end
+
 template "/etc/newrelic/newrelic.cfg" do
   source "newrelic.cfg.erb"
   variables(
@@ -34,3 +42,5 @@ template "/etc/newrelic/newrelic.cfg" do
     :collector => node[:newrelic][:daemon][:collector_host]
   )
 end
+
+/etc/init.d/newrelic-daemon start

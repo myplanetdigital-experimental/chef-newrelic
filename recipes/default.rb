@@ -31,11 +31,3 @@ apt_repository "newrelic" do
   action :add
 end
 
-directory '/etc/newrelic' do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
-  recursive true
-end
-
