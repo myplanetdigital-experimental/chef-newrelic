@@ -33,10 +33,10 @@ end
 
 template "/etc/newrelic/newrelic.cfg" do
   source "newrelic.cfg.erb"
-  variables({
-    :license_key => node[:newrelic][:license_key]
-    :loglevel => node[:newrelic][:loglevel]
-    :logfile => node[:newrelic][:logfile]
+  variables(
+    :license_key => node[:newrelic][:license_key],
+    :loglevel => node[:newrelic][:loglevel],
+    :logfile => node[:newrelic][:logfile],
     :pifdile => node[:newrelic][:pidfile]  
-  })
+  )
 end
