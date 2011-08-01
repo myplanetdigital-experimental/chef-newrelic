@@ -46,7 +46,8 @@ default[:newrelic][:pidfile]                 = '/var/run/newrelic-daemon.pid'
 default[:newrelic][:logfile]                 = '/var/log/newrelic/newrelic-daemon.log'
 default[:newrelic][:loglevel]                = 'info'
 
-default[:newrelic][:daemon][:collector_host] = 'collector.newrelic.com'
+#default[:newrelic][:daemon][:collector_host] = 'collector.newrelic.com'
+default[:newrelic][:daemon][:collector_host] = 'staging-collector.newrelic.com'
 default[:newrelic][:daemon][:ssl]            = false
 default[:newrelic][:daemon][:ssl_ca_bundle]  = ''
 default[:newrelic][:daemon][:ssl_ca_path]    = ''

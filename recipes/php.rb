@@ -30,6 +30,7 @@ template "/etc/newrelic/newrelic.cfg" do
     :license_key => node[:newrelic][:license_key],
     :loglevel => node[:newrelic][:loglevel],
     :logfile => node[:newrelic][:logfile],
-    :pifdile => node[:newrelic][:pidfile]  
+    :pidfile => node[:newrelic][:pidfile],
+    :collector => node[:newrelic][:daemon][:collector_host]
   )
 end
