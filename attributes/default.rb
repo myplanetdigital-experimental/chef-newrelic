@@ -17,9 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
+default[:newrelic]['newrelic.appname']                                       = 'PHP Application'
  
 default[:newrelic][:php]['newrelic.enabled']                                  = 1
-default[:newrelic][:php]['newrelic.appname']                                  = 'PHP Application'
 default[:newrelic][:php]['newrelic.transaction_tracer.enable']                = 1
 default[:newrelic][:php]['newrelic.transaction_tracer.threshold']             = 'adpex_f'
 default[:newrelic][:php]['newrelic.transaction_tracer.top100']                = 0
