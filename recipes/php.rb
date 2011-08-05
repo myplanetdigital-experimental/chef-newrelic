@@ -57,6 +57,9 @@ end
 
 template "/etc/php5/conf.d/newrelic.ini" do
   source "newrelic.ini.erb"
+  variables(
+    :params => node
+  )
   notifies :restart, resources(:service => "newrelic-daemon"), :delayed
 end
 
