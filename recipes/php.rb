@@ -42,9 +42,9 @@ NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
 if [ -e /usr/bin/newrelic-install ]; then
   /usr/bin/newrelic-install install
 fi
-
 EOH
   notifies :run, resources(:execute => "run_newrelic-installer")
+  creates "/tmp/newrelic-installer"
 end
 
 directory '/etc/newrelic' do
@@ -71,6 +71,16 @@ template "/etc/newrelic/newrelic.cfg" do
     :logfile => node[:newrelic][:logfile],
     :pidfile => node[:newrelic][:pidfile],
     :collector => node[:newrelic][:daemon][:collector_host]
+  )
+  notifies :restart, resources(:service => "newrelic-daemon"), :delayed
+end
+
+template "/etc/newrelic/newrelic.yml" do
+  source "newrelic.yml.erb"
+  variables(
+    :license_key => node[:newrelic][:license_key],
+    :appname => node[:newrelic][:appname],
+    :params => node
   )
   notifies :restart, resources(:service => "newrelic-daemon"), :delayed
 end

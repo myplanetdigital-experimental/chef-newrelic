@@ -36,6 +36,7 @@ service "newrelic-daemon" do
   action :nothing
 end
 
+
 #service "newrelic-daemon" do
 #  case node[:platform]
 #  when "CentOS","RedHat","Fedora"

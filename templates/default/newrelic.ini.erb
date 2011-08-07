@@ -1,7 +1,7 @@
 # WARNING: This file is managed via Opscode Chef. Any manual changes will be overridden on chef run.
 
+newrelic.appname                                  = <%= @appname %>
 newrelic.enabled                                  = <%= @params[:newrelic][:php]['newrelic.enabled'] %>
-newrelic.appname                                  = <%= @params[:newrelic][:php][:appname] %>
 newrelic.transaction_tracer.enable                = <%= @params[:newrelic][:php]['newrelic.transaction_tracer.enable']  %>
 newrelic.transaction_tracer.threshold             = <%= @params[:newrelic][:php]['newrelic.transaction_tracer.threshold'] %>
 newrelic.transaction_tracer.top100']              = <%= @params[:newrelic][:php]['newrelic.transaction_tracer.top100'] %>
