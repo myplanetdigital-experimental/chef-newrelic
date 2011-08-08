@@ -24,29 +24,29 @@ package "newrelic-php5" do
   options "--force-yes"
 end
 
-execute "run_newrelic-installer" do
-  command "chmod +x /tmp/newrelic-installer;/tmp/newrelic-installer;touch /opt/skystack/tmp/executed-newrelic-installer;"
-  action :nothing
-  notifies :restart, resources(:service => "apache2")
-  only_if do ! File.exists?( "/opt/skystack/tmp/executed-newrelic-installer" ) end
-end
+#execute "run_newrelic-installer" do
+#  command "chmod +x /tmp/newrelic-installer;/tmp/newrelic-installer;touch /opt/skystack/tmp/executed-newrelic-installer;"
+#  action :nothing
+#  notifies :restart, resources(:service => "apache2")
+#  only_if do ! File.exists?( "/opt/skystack/tmp/executed-newrelic-installer" ) end
+#end
 
-bash "newrelic-installer" do
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-#!/bin/bash
-NR_INSTALL_SILENT=true
-NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
+#bash "newrelic-installer" do
+#  interpreter "bash"
+#  user "root"
+#  cwd "/tmp"
+#  code <<-EOH
+##!/bin/bash
+#NR_INSTALL_SILENT=true
+#NR_INSTALL_KEY=#{node[:newrelic][:license_key]}#
 
-if [ -e /usr/bin/newrelic-install ]; then
-  /usr/bin/newrelic-install install
-fi
-EOH
-  notifies :run, resources(:execute => "run_newrelic-installer")
-  creates "/tmp/newrelic-installer"
-end
+#if [ -e /usr/bin/newrelic-install ]; then
+#  /usr/bin/newrelic-install install
+#fi
+#EOH
+#  notifies :run, resources(:execute => "run_newrelic-installer")
+#  creates "/tmp/newrelic-installer"
+#end
 
 directory '/etc/newrelic' do
   owner "root"
@@ -62,7 +62,7 @@ template "/etc/php5/conf.d/newrelic.ini" do
     :appname => node[:newrelic][:appname],
     :params => node
   )
-  notifies :restart, resources(:service => "newrelic-daemon"), :delayed
+  notifies :start, resources(:service => "newrelic-daemon"), :delayed
 end
 
 template "/etc/newrelic/newrelic.cfg" do
@@ -74,7 +74,6 @@ template "/etc/newrelic/newrelic.cfg" do
     :pidfile => node[:newrelic][:pidfile],
     :collector => node[:newrelic][:daemon][:collector_host]
   )
-  notifies :restart, resources(:service => "newrelic-daemon"), :delayed
 end
 
 template "/etc/newrelic/newrelic.yml" do
@@ -84,7 +83,6 @@ template "/etc/newrelic/newrelic.yml" do
     :appname => node[:newrelic][:appname],
     :params => node
   )
-  notifies :restart, resources(:service => "newrelic-daemon"), :delayed
 end
 
 
