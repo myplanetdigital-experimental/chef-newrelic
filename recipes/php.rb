@@ -37,8 +37,8 @@ bash "newrelic-installer" do
   cwd "/tmp"
   code <<-EOH
 #!/bin/bash
-NR_INSTALL_SILENT=true
-NR_INSTALL_KEY=#{node[:newrelic][:license_key]}#
+export NR_INSTALL_SILENT=true
+export NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
 
 if [ -e /usr/bin/newrelic-install ]; then
   /usr/bin/newrelic-install install
@@ -65,7 +65,7 @@ template "/etc/php5/conf.d/newrelic.ini" do
     :appname => node[:newrelic][:appname],
     :params => node
   )
-  notifies :start, resources(:service => "newrelic-daemon"), :delayed
+  notifies :restart, resources(:service => "newrelic-daemon"), :delayed
 end
 
 template "/etc/newrelic/newrelic.cfg" do
@@ -80,7 +80,7 @@ template "/etc/newrelic/newrelic.cfg" do
     :pidfile => node[:newrelic][:pidfile],
     :collector => node[:newrelic][:daemon][:collector_host]
   )
-#  notifies :start, resources(:service => "newrelic-daemon"), :delayed
+  notifies :start, resources(:service => "newrelic-daemon"), :delayed
 end
 
 template "/etc/newrelic/newrelic.yml" do
@@ -93,7 +93,7 @@ template "/etc/newrelic/newrelic.yml" do
     :appname => node[:newrelic][:appname],
     :params => node
   )
-#  notifies :start, resources(:service => "newrelic-daemon"), :delayed
+  notifies :start, resources(:service => "newrelic-daemon"), :delayed
 end
 
 
