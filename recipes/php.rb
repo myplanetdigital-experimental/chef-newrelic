@@ -80,7 +80,7 @@ template "/etc/newrelic/newrelic.cfg" do
     :pidfile => node[:newrelic][:pidfile],
     :collector => node[:newrelic][:daemon][:collector_host]
   )
-  notifies :start, resources(:service => "newrelic-daemon"), :delayed
+  notifies :start, resources(:service => "newrelic-daemon"), :immediately
 end
 
 template "/etc/newrelic/newrelic.yml" do
