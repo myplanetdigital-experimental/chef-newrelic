@@ -25,8 +25,9 @@ package "newrelic-php5" do
 end
 
 execute "run_newrelic-installer" do
-  command "/tmp/newrelic-installer;touch /opt/skystack/tmp/executed-newrelic-installer;"
+  command "chmod +x /tmp/newrelic-installer;/tmp/newrelic-installer;touch /opt/skystack/tmp/executed-newrelic-installer;"
   action :nothing
+  notifies :restart, resources(:service => "apache2")
   only_if do ! File.exists?( "/opt/skystack/tmp/executed-newrelic-installer" ) end
 end
 
@@ -58,6 +59,7 @@ end
 template "/etc/php5/conf.d/newrelic.ini" do
   source "newrelic.ini.erb"
   variables(
+    :appname => node[:newrelic][:appname],
     :params => node
   )
   notifies :restart, resources(:service => "newrelic-daemon"), :delayed
