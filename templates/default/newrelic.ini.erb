@@ -21,3 +21,6 @@ newrelic.browser_monitoring.auto_instrument       = <%= @params[:newrelic][:php]
 newrelic.timeout                                  = <%= @params[:newrelic][:php]['newrelic.timeout'] %>
 newrelic.nonblocking                              = <%= @params[:newrelic][:php]['newrelic.nonblocking'] %>
 newrelic.daemon                                   = <%= @params[:newrelic][:php]['newrelic.daemon']   %>
+
+;Add the New Relic Extension to PHP5
+extension=newrelic.so
