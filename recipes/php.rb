@@ -24,10 +24,18 @@ package "newrelic-php5" do
   options "--force-yes"
 end
 
+directory '/etc/newrelic' do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+  recursive true
+end
+
 execute "run_newrelic-installer" do
   command "chmod +x /tmp/newrelic-installer;/tmp/newrelic-installer;touch /opt/skystack/tmp/executed-newrelic-installer;"
   action :nothing
-  notifies :restart, resources(:service => "apache2"), :immediately
+ 
   only_if do ! File.exists?( "/opt/skystack/tmp/executed-newrelic-installer" ) end
 end
 
@@ -48,14 +56,6 @@ EOH
   creates "/tmp/newrelic-installer"
 end
 
-directory '/etc/newrelic' do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
-  recursive true
-end
-
 template "/etc/php5/conf.d/newrelic.ini" do
   source "newrelic.ini.erb"
   owner "root"
@@ -65,7 +65,7 @@ template "/etc/php5/conf.d/newrelic.ini" do
     :appname => node[:newrelic][:appname],
     :params => node
   )
-  notifies :restart, resources(:service => "newrelic-daemon"), :delayed
+  notifies :restart, resources(:service => "apache2"), :immediately
 end
 
 template "/etc/newrelic/newrelic.cfg" do
