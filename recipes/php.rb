@@ -27,7 +27,7 @@ end
 execute "run_newrelic-installer" do
   command "chmod +x /tmp/newrelic-installer;/tmp/newrelic-installer;touch /opt/skystack/tmp/executed-newrelic-installer;"
   action :nothing
-  notifies :restart, resources(:service => "apache2")
+  notifies :restart, resources(:service => "apache2") :immediately
   only_if do ! File.exists?( "/opt/skystack/tmp/executed-newrelic-installer" ) end
 end
 
