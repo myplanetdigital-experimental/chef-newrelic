@@ -46,6 +46,7 @@ bash "newrelic-installer" do
   code <<-EOH
 #!/bin/bash
 export NR_INSTALL_SILENT=true
+export NR_INSTALL_SHELL=/bin/bash
 export NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
 
 /usr/bin/newrelic-install install
@@ -97,7 +98,11 @@ end
 
 
 service "newrelic-daemon" do
- action [ :enable, :start ]
+ action [ :enable, :restart ]
 end
 
+execute "run-newrelic-daemon" do
+  command "/etc/init.d/newrelic-daemon restart"
+  action :run
+end
 
