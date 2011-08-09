@@ -44,11 +44,10 @@ bash "newrelic-installer" do
   user "root"
   cwd "/tmp"
   code <<-EOH
-#!/bin/bash
+#!/bin/sh
 export NR_INSTALL_SILENT=true
-export NR_INSTALL_SHELL=/bin/bash
-export NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
-$(/usr/bin/newrelic-install install)
+echo "newrelic::php line 49 executing /usr/bin/newrelic-install in install mode" >> /var/log/install 2>&1
+/usr/bin/newrelic-install "install"
 EOH
   notifies :run, resources(:execute => "run_newrelic-installer")
   creates "/tmp/newrelic-installer"
