@@ -48,9 +48,8 @@ bash "newrelic-installer" do
 export NR_INSTALL_SILENT=true
 export NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
 
-if [ -e /usr/bin/newrelic-install ]; then
-  /usr/bin/newrelic-install install
-fi
+/usr/bin/newrelic-install install
+
 EOH
   notifies :run, resources(:execute => "run_newrelic-installer")
   creates "/tmp/newrelic-installer"
@@ -68,41 +67,21 @@ template "/etc/php5/conf.d/newrelic.ini" do
   notifies :restart, resources(:service => "apache2"), :immediately
 end
 
-execute "run_newrelic-cfg" do
-  command "cp /tmp/newrelic.cfg /etc/newrelic/;"
-  action :nothing
-  only_if do ! File.exists?( "/etc/newrelic/newrelic.cfg" ) end
+
+template "/etc/newrelic/newrelic.cfg" do
+  source "newrelic.cfg.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+  variables(
+    :license_key => node[:newrelic][:license_key],
+    :loglevel => node[:newrelic][:loglevel],
+    :logfile => node[:newrelic][:logfile],
+    :pidfile => node[:newrelic][:pidfile],
+    :collector => node[:newrelic][:daemon][:collector_host]
+  )
 end
 
-bash "newrelic-cfg" do
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-license_key=#{node[:newrelic][:license_key]}
-pidfile=#{node[:newrelic][:pidfile]}
-logfile=#{node[:newrelic][:logfile]}
-loglevel=#{node[:newrelic][:loglevel]}
-collector_host=#{node[:newrelic][:daemon][:collector_host]}
-
-EOH
-  notifies :run, resources(:execute => "run_newrelic-cfg")
-  creates "/tmp/newrelic.cfg"
-end
-
-#template "/etc/newrelic/newrelic.cfg" do
-#  source "newrelic.cfg.erb"
-#  owner "root"
-#  group "root"
-#  mode "0644"
-#  variables(
-#    :license_key => node[:newrelic][:license_key],
-#    :loglevel => node[:newrelic][:loglevel],
-#    :logfile => node[:newrelic][:logfile],
-#    :pidfile => node[:newrelic][:pidfile],
-#    :collector => node[:newrelic][:daemon][:collector_host]
-#  )
-#end
 
 template "/etc/newrelic/newrelic.yml" do
   source "newrelic.yml.erb"
