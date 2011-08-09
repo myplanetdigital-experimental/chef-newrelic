@@ -44,9 +44,9 @@ bash "newrelic-installer" do
   user "root"
   cwd "/tmp"
   code <<-EOH
-#!/bin/sh
+#!/bin/bash
 export NR_INSTALL_SILENT=true
-export NR_INSTALL_SHELL=/bin/sh
+export NR_INSTALL_SHELL=/bin/bash
 export NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
 $(/usr/bin/newrelic-install install)
 EOH
