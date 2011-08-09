@@ -40,17 +40,15 @@ execute "run_newrelic-installer" do
 end
 
 bash "newrelic-installer" do
-  interpreter "bash"
+  interpreter "sh"
   user "root"
   cwd "/tmp"
   code <<-EOH
-#!/bin/bash
+#!/bin/sh
 export NR_INSTALL_SILENT=true
-export NR_INSTALL_SHELL=/bin/bash
+export NR_INSTALL_SHELL=/bin/sh
 export NR_INSTALL_KEY=#{node[:newrelic][:license_key]}
-
-/usr/bin/newrelic-install install
-
+$(/usr/bin/newrelic-install install)
 EOH
   notifies :run, resources(:execute => "run_newrelic-installer")
   creates "/tmp/newrelic-installer"
