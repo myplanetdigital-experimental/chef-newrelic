@@ -20,11 +20,6 @@
 
 require_recipe "apt"
 
-node[":newrelic"].each do |nr|
-  #node[:newrelic][:license_key]
-  node[:newrelic][:license_key] = nr["license_key"]
-end
-
 apt_repository "newrelic" do
   uri "http://apt.newrelic.com/debian"
   components ["newrelic", "non-free"]
