@@ -14,7 +14,7 @@ recipe            "newrelic::python", "Install New Relic for Python."
   supports os
 end
 
-depends ""
+conflicts "php::module_xdebug"
 
 attribute "newrelic/license_key",
   :display_name => "New Relic license key",
