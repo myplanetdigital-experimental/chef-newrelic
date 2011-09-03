@@ -1,0 +1,11 @@
+= DESCRIPTION:
+
+= REQUIREMENTS:
+
+= ATTRIBUTES:
+
+= USAGE:
+ 
+Small caveat: If your daemon keeps failing to start (with perhaps a log warning about your license key being missing or invalid, the try editing node['newrelic']['daemon']['collector_host'] to be collector.newrelic.com
+
+= LICENSE & AUTHOR:
