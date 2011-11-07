@@ -32,25 +32,9 @@ directory '/etc/newrelic' do
   recursive true
 end
 
-execute "run_newrelic-installer" do
-  command "chmod +x /tmp/newrelic-installer;/tmp/newrelic-installer;touch /opt/skystack/tmp/executed-newrelic-installer;"
-  action :nothing
- 
-  only_if do ! File.exists?( "/opt/skystack/tmp/executed-newrelic-installer" ) end
-end
-
 bash "newrelic-installer" do
-  interpreter "sh"
   user "root"
-  cwd "/tmp"
-  code <<-EOH
-#!/bin/sh
-export NR_INSTALL_SILENT=true
-echo "newrelic::php line 49 executing /usr/bin/newrelic-install in install mode" >> /var/log/install 2>&1
-/usr/bin/newrelic-install "install"
-EOH
-  notifies :run, resources(:execute => "run_newrelic-installer")
-  creates "/tmp/newrelic-installer"
+  code "NR_INSTALL_PHPLIST='/usr/bin' newrelic-install install"
 end
 
 template "/etc/php5/conf.d/newrelic.ini" do
